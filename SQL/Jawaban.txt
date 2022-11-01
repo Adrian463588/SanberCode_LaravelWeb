@@ -1,0 +1,41 @@
+1. buat database
+CREATE DATABASE myshop;
+
+2. buat tabel
+-users
+CREATE TABLE users( id INTEGER PRIMARY KEY AUTO_INCREMENT, nama varchar(255) not null, email varchar(255) not null, password varchar(255) not null );
+
+-categories
+CREATE TABLE category( id INTEGER PRIMARY KEY AUTO_INCREMENT, name varchar(255) not null );
+
+-items
+CREATE TABLE item( id INTEGER PRIMARY KEY AUTO_INCREMENT, name varchar(255)not null, description varchar(255)not null, price integer not null, stock integer not null, category_id int not null, FOREIGN KEY (category_id) REFERENCES category(id) );
+
+3. insert tabel
+-users
+INSERT into users (nama, email, password) VALUES ('John Doe','john@doe.com','john123');
+INSERT INTO users (nama,email,password) VALUES ('Jane Doe','jane@doe.com','jenita123');
+
+-categories
+INSERT into category (name) VALUES ('gadget');
+INSERT into category (name) VALUES ('cloth');
+INSERT into category (name) VALUES ('men');
+INSERT into category (name) VALUES ('women');
+INSERT into category (name) VALUES ('branded');
+
+-items
+INSERT into item (name,description,price,stock,category_id) VALUES ('Sumsang b50','hape keren dari merek sumsang', 4000000, 100, 1);
+INSERT into item (name,description,price,stock,category_id) VALUES ('Uniklooh', 'baju keren dari brand ternama' ,500000 ,50 ,2);
+INSERT into item (name,description,price,stock,category_id) VALUES ('MHO Watch', 'jam tangan anak yang jujur banget' ,2000000 ,10 ,1);
+
+4.mengambil data
+a
+SELECT id, nama, email from users;
+b
+-SELECT * FROM `item` WHERE price > 1000000;
+-SELECT * FROM `item` WHERE name LIKE "%watch";
+c
+-SELECT item.* , category.name as category FROM item INNER JOIN category ON item.category_id = category.id;
+
+5. update data
+-UPDATE item set price=2500000 WHERE id=1;
